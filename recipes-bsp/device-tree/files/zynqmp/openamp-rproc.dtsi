@@ -1,0 +1,50 @@
+&uart1 {
+	status = "disabled";
+};
+
+/ {
+	reserved-memory {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		ranges;
+		rproc_0_fw_reserved: rproc@3ed000000 {
+			compatible = "rproc-prog-memory";
+			no-map;
+			reg = <0x0 0x3ed00000 0x0 0x40000>;
+		};
+		rproc_0_dma_reserved: rproc@3ed400000 {
+			compatible = "shared-dma-pool";
+			no-map;
+			reg = <0x0 0x3ed40000 0x0 0x80000>;
+		};
+	};
+
+	firmware {
+		zynqmp_firmware: zynqmp-firmware {
+			compatible = "xlnx,zynqmp-firmware";
+			method = "smc";
+		};
+	};
+
+	amba {
+
+		zynqmp-r5-remoteproc@0 {
+			compatible = "xlnx,zynqmp-r5-remoteproc-1.0";
+			reg = <0x0 0xFFE00000 0x0 0x10000>,
+				<0x0 0xFFE20000 0x0 0x10000>,
+				<0x0 0xff340000 0x0 0x100>;
+			reg-names = "tcm_a", "tcm_b", "ipi";
+			dma-ranges;
+			core_conf = "split0";
+
+			memory-region = <&rproc_0_fw_reserved>,
+					<&rproc_0_dma_reserved>;
+
+			tcm-pnode-id = <0xf>, <0x10>;
+			rpu-pnode-id = <0x7>;
+			interrupt-parent = <&gic>;
+			interrupts = <0 29 4>;
+		} ;
+	};
+};
+

@@ -1,0 +1,33 @@
+meta-openamp-test-xilinx
+===================
+
+This layer provides support for building Linux kernel and rootfs to
+test OpenAMP with Linux kernel on Xilinx platform.
+
+Dependencies
+------------
+This layer depends on:
+
+URI: git://git.openembedded.org/bitbake
+
+URI: git://git.yoctoproject.org/poky
+layers: meta
+        meta-poky
+
+URI: git://github.com/openembedded/meta-openembedded
+layers: meta-oe
+
+URI: git://github.com/OpenAMP/meta-openamp
+layers: meta-openamp
+
+
+URI: git://github.com/xilinx/meta-xilinx
+layers: meta-xilinx-bsp
+        meta-xilinx-contrib
+
+License
+-------
+
+All metadata is MIT licensed unless otherwise stated. Source code included
+in tree for individual recipes is under the LICENSE stated in each recipe
+(.bb file) unless otherwise stated.

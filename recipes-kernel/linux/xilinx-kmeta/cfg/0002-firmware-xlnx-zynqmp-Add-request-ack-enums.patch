@@ -1,0 +1,33 @@
+From 6c03b4421068dcb97cedc1ea422e4aefd1faf431 Mon Sep 17 00:00:00 2001
+From: Wendy Liang <jliang@xilinx.com>
+Date: Tue, 14 Aug 2018 16:56:33 -0700
+Subject: [PATCH 2/8] firmware: xlnx-zynqmp: Add request ack enums
+
+Add firmware request ack enums which will be used in firmware
+request calls.
+
+Signed-off-by: Wendy Liang <jliang@xilinx.com>
+---
+ include/linux/firmware/xlnx-zynqmp.h | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/include/linux/firmware/xlnx-zynqmp.h b/include/linux/firmware/xlnx-zynqmp.h
+index cf3eb1e..bd8b6ac 100644
+--- a/include/linux/firmware/xlnx-zynqmp.h
++++ b/include/linux/firmware/xlnx-zynqmp.h
+@@ -32,6 +32,12 @@
+ /* Number of 32bits values in payload */
+ #define PAYLOAD_ARG_CNT	4U
+ 
++enum zynqmp_pm_request_ack {
++	ZYNQMP_PM_REQUEST_ACK_NO = 1,
++	ZYNQMP_PM_REQUEST_ACK_BLOCKING,
++	ZYNQMP_PM_REQUEST_ACK_NON_BLOCKING,
++};
++
+ enum pm_api_id {
+ 	PM_GET_API_VERSION = 1,
+ 	PM_IOCTL = 34,
+-- 
+2.7.4
+

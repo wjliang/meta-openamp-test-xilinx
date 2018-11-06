@@ -1,0 +1,36 @@
+/ {
+	reserved-memory {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		ranges;
+		rproc_0_reserved: rproc@3ed000000 {
+			no-map;
+			reg = <0x0 0x3ed00000 0x0 0x2000000>;
+		};
+	};
+
+	amba {
+		ipi_mailbox_rpu0: mailbox@ff990400 {
+			compatible = "xlnx,zynqmp-ipi-mailbox";
+			reg = <0x0 0xff990100 0x0 0x20>,
+			      <0x0 0xff990120 0x0 0x20>,
+			      <0x0 0xff990880 0x0 0x20>,
+			      <0x0 0xff9908a0 0x0 0x20>;
+			reg-names = "local_request_region", "local_response_region",
+				    "remote_request_region", "remote_response_region";
+			#mbox-cells = <1>;
+			xlnx,ipi-ids = <0 8>;
+			status = "okay";
+			interrupt-parent = <&gic>;
+			interrupts = <0 35 4>;
+		};
+
+		mailbox_test0: mailbox_test@3ed00000 {
+			compatible = "mailbox-test";
+			reg = <0x0 0x3ed00000 0x0 0x1000>, <0x0 0x3ed01000 0x0 0x1000>;
+			mboxes = <&ipi_mailbox_rpu0 0>, <&ipi_mailbox_rpu0 1>;
+			mbox-names = "tx", "rx";
+		};
+	};
+};
+

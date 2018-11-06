@@ -1,0 +1,31 @@
+From 2b81e4f9eb180bf6bc530588c43368f04abc84b6 Mon Sep 17 00:00:00 2001
+From: Wendy Liang <jliang@xilinx.com>
+Date: Wed, 15 Aug 2018 17:06:07 -0700
+Subject: [PATCH 3/8] firmware: xilinx-zynqmp: Add request access capability
+ macro
+
+Add request access capability macro which will be used to
+request access to a device node from Xilinx firmware.
+
+Signed-off-by: Wendy Liang <jliang@xilinx.com>
+---
+ include/linux/firmware/xlnx-zynqmp.h | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/include/linux/firmware/xlnx-zynqmp.h b/include/linux/firmware/xlnx-zynqmp.h
+index bd8b6ac..7d5fac2 100644
+--- a/include/linux/firmware/xlnx-zynqmp.h
++++ b/include/linux/firmware/xlnx-zynqmp.h
+@@ -32,6 +32,9 @@
+ /* Number of 32bits values in payload */
+ #define PAYLOAD_ARG_CNT	4U
+ 
++/* Request capability of a device node */
++#define	ZYNQMP_PM_CAPABILITY_ACCESS	0x1U
++
+ enum zynqmp_pm_request_ack {
+ 	ZYNQMP_PM_REQUEST_ACK_NO = 1,
+ 	ZYNQMP_PM_REQUEST_ACK_BLOCKING,
+-- 
+2.7.4
+

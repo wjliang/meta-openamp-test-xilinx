@@ -1,0 +1,13 @@
+define KFEATURE_DESCRIPTION "OpenAMP Xilinx Kernel Support"
+define KFEATURE_COMPATIBILITY arch
+
+patch 0001-firmware-xlnx-zynqmp-Add-RPU-ioctl-enums.patch
+patch 0002-firmware-xlnx-zynqmp-Add-request-ack-enums.patch
+patch 0003-firmware-xilinx-zynqmp-Add-request-access-capability.patch
+patch 0004-firmware-xlnx-zynqmp-Add-request-release-node.patch
+patch 0005-firmware-xlnx-zynqmp-Add-shutdown-wakeup-request.patch
+patch 0006-remoteproc-Add-Xilinx-ZynqMP-R5-remoteproc.patch
+patch 0007-dt-bindings-remoteproc-Add-Xilinx-R5-remoteproc.patch
+patch 0008-zcu102-rproc-dts-and-defconfig-testing.patch
+
+kconf non-hardware xilinx.cfg
